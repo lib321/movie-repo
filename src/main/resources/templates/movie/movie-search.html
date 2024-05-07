@@ -27,17 +27,22 @@
                     </p>
                 </div>
                 <div class="movie-label-blocks">
-                    <input class="label-inner-blocks input-blocks input-padding" type="text" id="title" name="title">
+                    <input class="label-inner-blocks input-blocks input-padding" type="text" id="title" name="title"
+                           th:value="${filter != null ? filter.title : ''}">
                     <div class="label-year-block label-inner-blocks">
                         <label for="yearFrom"></label>
-                        <input class="input-padding" type="number" id="yearFrom" name="yearFrom">
+                        <input class="input-padding" type="number" id="yearFrom" name="yearFrom"
+                               th:value="${filter != null ? filter.yearFrom : ''}">
                         <label for="yearTo"></label>
-                        <input class="input-padding" type="number" id="yearTo" name="yearTo">
+                        <input class="input-padding" type="number" id="yearTo" name="yearTo"
+                               th:value="${filter != null ? filter.yearTo : ''}">
                     </div>
-                    <input class="label-inner-blocks input-padding" type="number" step="0.01" id="rating" name="rating" min="0"
-                           max="10">
-                    <input class="label-inner-blocks input-padding" type="text" id="actorName" name="actorName">
-                    <input class="label-inner-blocks input-padding" type="text" id="directorName" name="directorName">
+                    <input class="label-inner-blocks input-padding" type="number" step="0.01" id="rating" name="rating"
+                           min="0" max="10" th:value="${filter != null ? filter.rating : ''}">
+                    <input class="label-inner-blocks input-padding" type="text" id="actorName" name="actorName"
+                           th:value="${filter != null ? filter.actorName : ''}">
+                    <input class="label-inner-blocks input-padding" type="text" id="directorName" name="directorName"
+                           th:value="${filter != null ? filter.directorName : ''}">
                 </div>
             </div>
             <button class="buttons label-p-blocks" type="submit">Поиск</button>

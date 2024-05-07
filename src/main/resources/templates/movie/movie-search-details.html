@@ -28,12 +28,12 @@
     </p>
     <div class="buttons-flex-direction-details">
         <form action="/movie/search" method="get">
-            <input type="hidden" name="title" th:value="${title}">
-            <input type="hidden" name="yearFrom" th:value="${yearFrom}">
-            <input type="hidden" name="yearTo" th:value="${yearTo}">
-            <input type="hidden" name="rating" th:value="${rating}">
-            <input type="hidden" name="actorName" th:value="${actorName}">
-            <input type="hidden" name="directorName" th:value="${directorName}">
+            <input type="hidden" name="title" th:value="${session.filter.title}">
+            <input type="hidden" name="yearFrom" th:value="${session.filter.yearFrom}">
+            <input type="hidden" name="yearTo" th:value="${session.filter.yearTo}">
+            <input type="hidden" name="rating" th:value="${session.filter.rating}">
+            <input type="hidden" name="actorName" th:value="${session.filter.actorName}">
+            <input type="hidden" name="directorName" th:value="${session.filter.directorName}">
             <button class="buttons" type="submit">Назад</button>
         </form>
         <form action="/movie/delete" method="post">

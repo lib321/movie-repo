@@ -1,6 +1,7 @@
 package com.example.movie.controller;
 
 import com.example.movie.Entity.*;
+import com.example.movie.dto.MovieSearchFilter;
 import com.example.movie.service.MovieService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,41 +101,19 @@ public class MovieController {
     }
 
     @GetMapping("/search")
-    public String searchMovies(Model model, HttpSession session,
-                               @RequestParam(value = "title", required = false) String title,
-                               @RequestParam(value = "yearFrom", required = false) Integer yearFrom,
-                               @RequestParam(value = "yearTo", required = false) Integer yearTo,
-                               @RequestParam(value = "rating", required = false) BigDecimal rating,
-                               @RequestParam(value = "actorName", required = false) String actorName,
-                               @RequestParam(value = "directorName", required = false) String directorName) {
-        List<Movie> movies = movieService.searchMovies(title, yearFrom, yearTo, rating, actorName, directorName);
-        session.setAttribute("title", title);
-        session.setAttribute("yearFrom", yearFrom);
-        session.setAttribute("yearTo", yearTo);
-        session.setAttribute("rating", rating);
-        session.setAttribute("actorName", actorName);
-        session.setAttribute("directorName", directorName);
+    public String searchMovies(Model model, HttpSession session, MovieSearchFilter filter) {
+        List<Movie> movies = movieService.searchMovies(filter.getTitle(), filter.getYearFrom(), filter.getYearTo(),
+                filter.getRating(), filter.getActorName(), filter.getDirectorName());
+        session.setAttribute("filter", filter);
         model.addAttribute("movies", movies);
+        model.addAttribute("filter", filter);
         return "movie/movie-search";
     }
 
     @GetMapping("/search/details")
-    public String searchMovieDetails(@RequestParam Long id,
-                                     Model model, HttpSession session) {
+    public String searchMovieDetails(@RequestParam Long id, Model model) {
         Movie movie = movieService.getMovieById(id);
-        String title = (String) session.getAttribute("title");
-        Integer yearFrom = (Integer) session.getAttribute("yearFrom");
-        Integer yearTo = (Integer) session.getAttribute("yearTo");
-        BigDecimal rating = (BigDecimal) session.getAttribute("rating");
-        String actorName = (String) session.getAttribute("actorName");
-        String directorName = (String) session.getAttribute("directorName");
         model.addAttribute("movie", movie);
-        model.addAttribute("title", title);
-        model.addAttribute("yearFrom", yearFrom);
-        model.addAttribute("yearTo", yearTo);
-        model.addAttribute("rating", rating);
-        model.addAttribute("actorName", actorName);
-        model.addAttribute("directorName", directorName);
         return "movie/movie-search-details";
     }
 }

@@ -3,6 +3,7 @@ package com.example.movie.service;
 import com.example.movie.Entity.Actor;
 import com.example.movie.Entity.Director;
 import com.example.movie.Entity.Movie;
+import com.example.movie.dto.MovieSearchFilter;
 import com.example.movie.repository.ActorRepo;
 import com.example.movie.repository.DirectorRepo;
 import com.example.movie.repository.MovieRepo;
