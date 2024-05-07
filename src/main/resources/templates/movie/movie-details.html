@@ -27,7 +27,7 @@
     </p>
     <div class="buttons-flex-direction-details">
         <form action="/movie" method="get">
-            <input type="hidden" name="page" th:value="${page}">
+            <input type="hidden" name="page" th:value="${session.page}">
             <button class="buttons" type="submit">Назад</button>
         </form>
         <form action="/movie/delete" method="post">

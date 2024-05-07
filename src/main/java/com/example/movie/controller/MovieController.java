@@ -32,18 +32,14 @@ public class MovieController {
         model.addAttribute("movies", movies);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", movies.getTotalPages());
-        session.setAttribute("currentPage", page);
+        session.setAttribute("page", page);
         return "movie/movie-catalog";
     }
 
     @GetMapping("/details")
-    public String getMovieDetails(@RequestParam Long id,
-                                  Model model,
-                                  HttpSession session) {
+    public String getMovieDetails(@RequestParam Long id, Model model) {
         Movie movie = movieService.getMovieById(id);
-        int page = (int) session.getAttribute("currentPage");
         model.addAttribute("movie", movie);
-        model.addAttribute("page", page);
         return "movie/movie-details";
     }
 
@@ -93,8 +89,8 @@ public class MovieController {
     }
 
     @GetMapping("/top10/details")
-    public String getMovieDetails(@RequestParam Long id,
-                                  Model model) {
+    public String getMovieDetailsTop10(@RequestParam Long id,
+                                       Model model) {
         Movie movie = movieService.getMovieById(id);
         model.addAttribute("movie", movie);
         return "movie/top10-movie-details";
@@ -102,6 +98,7 @@ public class MovieController {
 
     @GetMapping("/search")
     public String searchMovies(Model model, HttpSession session, MovieSearchFilter filter) {
+
         List<Movie> movies = movieService.searchMovies(filter.getTitle(), filter.getYearFrom(), filter.getYearTo(),
                 filter.getRating(), filter.getActorName(), filter.getDirectorName());
         session.setAttribute("filter", filter);
