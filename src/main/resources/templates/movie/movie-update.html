@@ -19,7 +19,7 @@
             </div>
             <div class="movie-blocks p-blocks-update">
                 <p>Год издания:</p>
-                <input class="input-blocks-update" type="text" name="year" th:value="${movie.getYear()}">
+                <input class="input-blocks-update" type="number" name="year" th:value="${movie.getYear()}">
             </div>
             <div class="movie-blocks p-blocks-update">
                 <p>Жанры фильма:</p>
@@ -27,11 +27,11 @@
             </div>
             <div class="movie-blocks p-blocks-update">
                 <p>Рейтинг фильма:</p>
-                <input class="input-blocks-update" type="text" name="rate" th:value="${movie.getRating()}">
+                <input class="input-blocks-update" type="number" step="0.01" name="rate" th:value="${movie.getRating()}">
             </div>
             <div class="movie-blocks p-blocks-update">
                 <p>Количество на складе:</p>
-                <input class="input-blocks-update" type="text" name="count" th:value="${movie.getCount()}">
+                <input class="input-blocks-update" type="number" name="count" th:value="${movie.getCount()}">
             </div>
             <div class="movie-blocks p-blocks-update">
                 <p>Актеры:</p>
