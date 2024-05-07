@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="/css/movie/movie-list.css">
+<link rel="stylesheet" href="/css/home-page.css">
+
+<th:block th:replace="fragment/head-fragment :: head-fragment"></th:block>
+<body>
+
+<div class="main">
+    <div class="search-form">
+        <form action="/movie/search" method="get">
+            <div class="movie-blocks">
+                <div>
+                    <p class="label-p-blocks">
+                        <label for="title">Название фильма</label>
+                    </p>
+                    <p class="label-p-blocks">Год издания</p>
+                    <p class="label-p-blocks">
+                        <label for="rating">Рейтинг фильма</label>
+                    </p>
+                    <p class="label-p-blocks">
+                        <label for="actorName">Актер</label>
+                    </p>
+                    <p class="label-p-blocks">
+                        <label for="directorName">Режиссер</label>
+                    </p>
+                </div>
+                <div class="movie-label-blocks">
+                    <input class="label-inner-blocks input-blocks input-padding" type="text" id="title" name="title">
+                    <div class="label-year-block label-inner-blocks">
+                        <label for="yearFrom"></label>
+                        <input class="input-padding" type="text" id="yearFrom" name="yearFrom">
+                        <label for="yearTo"></label>
+                        <input class="input-padding" type="text" id="yearTo" name="yearTo">
+                    </div>
+                    <input class="label-inner-blocks input-padding" type="text" id="rating" name="rating" min="0"
+                           max="10">
+                    <input class="label-inner-blocks input-padding" type="text" id="actorName" name="actorName">
+                    <input class="label-inner-blocks input-padding" type="text" id="directorName" name="directorName">
+                </div>
+            </div>
+            <button class="buttons label-p-blocks" type="submit">Поиск</button>
+        </form>
+    </div>
+
+    <div class="movie-grid">
+        <div class="movie-grid-item" th:each="movie : ${movies}">
+            <img class="img-item" src="https://via.placeholder.com/468x220?text=Sample+Image"/>
+            <div class="movie-bottom">
+                <p class="movie-name" th:text="${movie.getName()}"></p>
+                <form action="/movie/details">
+                    <input type="hidden" name="id" th:value="${movie.getId()}">
+                    <button class="buttons" type="submit">Подробнее</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="buttons-flex-direction">
+        <div>
+            <form action="/movie" method="get">
+                <input type="hidden" name="page" th:value="${currentPage - 1}">
+                <button class="buttons bottom-buttons" th:classappend="${currentPage == 0} ? 'first-page' : ''"
+                        type="submit" th:disabled="${currentPage == 0}">Назад
+                </button>
+            </form>
+        </div>
+        <div>
+            <form action="/movie" method="get">
+                <input type="hidden" name="page" th:value="${currentPage + 1}">
+                <button class="buttons bottom-buttons"
+                        th:classappend="${currentPage == totalPages - 1} ? 'last-page' : ''"
+                        type="submit" th:disabled="${currentPage == totalPages - 1}">Вперед
+                </button>
+            </form>
+        </div>
+        <div>
+            <form action="/movie/create" method="get">
+                <button class="buttons bottom-buttons add-button" type="submit">Добавить фильм</button>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragment/footer-fragment :: footer-fragment"></th:block>
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="/css/movie/movie-list.css">
+<link rel="stylesheet" href="/css/home-page.css">
+
+<th:block th:replace="fragment/head-fragment :: head-fragment"></th:block>
+
+<body>
+
+<div class="main">
+  <div class="movie-grid">
+    <div class="movie-grid-item" th:each="movie : ${movies}">
+      <img class="img-item" src="https://via.placeholder.com/468x220?text=Sample+Image"/>
+      <div class="movie-bottom">
+        <p class="movie-name" th:text="${movie.getName()}"></p>
+        <form action="/movie/top10/details">
+          <input type="hidden" name="id" th:value="${movie.getId()}">
+          <button class="buttons" type="submit">Подробнее</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:replace="fragment/footer-fragment :: footer-fragment"></th:block>
+
+</body>
+</html>

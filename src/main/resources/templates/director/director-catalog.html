@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="/css/movie/movie-list.css">
+<link rel="stylesheet" href="/css/actor/actor-list.css">
+<link rel="stylesheet" href="/css/home-page.css">
+
+<th:block th:replace="fragment/head-fragment :: head-fragment"></th:block>
+
+<body>
+
+<div class="main" style="margin-top: 20px">
+    <div class="actor-grid">
+        <div class="actor-grid-item" th:each="director : ${directors}">
+            <p th:text="${director.getName() + ' ' + director.getSurname()}"></p>
+        </div>
+    </div>
+    <div class="buttons-flex-direction">
+        <div>
+            <form action="/director" method="get">
+                <input type="hidden" name="page" th:value="${currentPage - 1}">
+                <button class="buttons bottom-buttons" th:classappend="${currentPage == 0} ? 'first-page' : ''"
+                        type="submit" th:disabled="${currentPage == 0}">Назад
+                </button>
+            </form>
+        </div>
+        <div>
+            <form action="/director" method="get">
+                <input type="hidden" name="page" th:value="${currentPage + 1}">
+                <button class="buttons bottom-buttons"
+                        th:classappend="${currentPage == totalPages - 1} ? 'last-page' : ''"
+                        type="submit" th:disabled="${currentPage == totalPages - 1}">Вперед
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragment/footer-fragment :: footer-fragment"></th:block>
+
+</body>
+</html>

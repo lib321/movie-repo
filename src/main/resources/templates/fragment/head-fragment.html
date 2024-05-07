@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<link rel="stylesheet" href="/css/home-page.css">
+
+<body>
+<div class="home-main" th:fragment="head-fragment">
+    <h1 class="head-title">Movie Database Sample</h1>
+    <ul class="menu">
+        <li><a href="/movie">Фильмы</a></li>
+        <li><a href="/actor">Актеры</a></li>
+        <li><a href="/director">Режиссеры</a></li>
+        <li><a href="/movie/top10">Топ-10</a></li>
+        <th:block th:if="${@userService.getCurrentUser() == null}">
+            <li><a href="/login">Войти</a></li>
+        </th:block>
+        <th:block th:if="${@userService.getCurrentUser() != null}">
+            <li><a href="/logout">Выйти</a></li>
+        </th:block>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="/css/movie/movie-list.css">
+<link rel="stylesheet" href="/css/movie/movie-update.css">
+<link rel="stylesheet" href="/css/home-page.css">
+
+<th:block th:replace="fragment/head-fragment :: head-fragment"></th:block>
+<body>
+
+<div class="main">
+    <img class="image-item-update" src="https://via.placeholder.com/300x180?text=Sample+Image"/>
+    <form action="/movie/create" method="post">
+        <div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Название фильма:</p>
+                <input class="input-blocks-update" type="text" name="name" required>
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Год издания:</p>
+                <input class="input-blocks-update" type="text" name="year" required>
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Жанры фильма:</p>
+                <input class="input-blocks-update" type="text" name="genre" required>
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Рейтинг фильма:</p>
+                <input class="input-blocks-update" type="text" name="rate" required>
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Количество на складе:</p>
+                <input class="input-blocks-update" type="text" name="count" required>
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Актеры:</p>
+                <div>
+                    <div>
+                        <input class="input-blocks-update input-loop-blocks" type="text"
+                               name="actorFullName" required>
+                    </div>
+                    <div>
+                        <input class="input-blocks-update input-loop-blocks" type="text"
+                               name="actorFullName" required>
+                    </div>
+                </div>
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Режиссеры:</p>
+                <div>
+                    <div>
+                        <input class="input-blocks-update input-loop-blocks" type="text"
+                               name="directorFullName" required>
+                    </div>
+                    <div>
+                        <input class="input-blocks-update input-loop-blocks" type="text"
+                               name="directorFullName" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="buttons" type="submit">Добавить</button>
+    </form>
+</div>
+<th:block th:replace="fragment/footer-fragment :: footer-fragment"></th:block>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="/css/movie/movie-list.css">
+<link rel="stylesheet" href="/css/movie/movie-update.css">
+<link rel="stylesheet" href="/css/home-page.css">
+
+<th:block th:replace="fragment/head-fragment :: head-fragment"></th:block>
+
+<body>
+
+<div class="main">
+    <img class="image-item-update" src="https://via.placeholder.com/300x180?text=Sample+Image"/>
+    <form action="/movie/update" method="post">
+        <input type="hidden" name="id" th:value="${movie.getId()}">
+        <div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Название фильма:</p>
+                <input class="input-blocks-update" type="text" name="name" th:value="${movie.getName()}">
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Год издания:</p>
+                <input class="input-blocks-update" type="text" name="year" th:value="${movie.getYear()}">
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Жанры фильма:</p>
+                <input class="input-blocks-update" type="text" name="genre" th:value="${movie.getGenre()}">
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Рейтинг фильма:</p>
+                <input class="input-blocks-update" type="text" name="rate" th:value="${movie.getRating()}">
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Количество на складе:</p>
+                <input class="input-blocks-update" type="text" name="count" th:value="${movie.getCount()}">
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Актеры:</p>
+                <div>
+                    <div th:each="actor: ${movie.getActors()}">
+                        <input class="input-blocks-update input-loop-blocks" type="text" name="actorFullName"
+                               th:value="${actor.getName() + ' ' + actor.getSurname()}">
+                    </div>
+                </div>
+            </div>
+            <div class="movie-blocks p-blocks-update">
+                <p>Режиссеры:</p>
+                <div>
+                    <div th:each="director: ${movie.getDirectors()}">
+                        <input class="input-blocks-update input-loop-blocks" type="text" name="directorFullName"
+                               th:value="${director.getName() + ' ' + director.getSurname()}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="buttons" type="submit">Сохранить</button>
+    </form>
+</div>
+<th:block th:replace="fragment/footer-fragment :: footer-fragment"></th:block>
+
+</body>
+</html>
